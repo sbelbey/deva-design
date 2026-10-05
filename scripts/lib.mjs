@@ -33,3 +33,35 @@ export function checkContrast(tokens) {
   }
   return failures;
 }
+
+function header(tokens) {
+  return `/* deva-design v${tokens.version} — generado desde tokens/tokens.json. No editar a mano. */\n`;
+}
+
+function block(selector, tokens, mode) {
+  const lines = [`${selector} {`, `  color-scheme: ${mode};`];
+  for (const [name, value] of Object.entries(tokens.color)) lines.push(`  --deva-${name}: ${value[mode]};`);
+  if (mode === 'light') {
+    lines.push(`  --deva-font-body: ${tokens.font.body};`);
+    lines.push(`  --deva-radius: ${tokens.radius};`);
+  }
+  for (const [name, value] of Object.entries(tokens.shadow)) lines.push(`  --deva-shadow-${name}: ${value[mode]};`);
+  lines.push('}');
+  return lines.join('\n');
+}
+
+/** Variables CSS: claro en :root, oscuro con data-theme="dark" en <html>. */
+export function renderTokensCss(tokens) {
+  return `${header(tokens)}\n${block(':root', tokens, 'light')}\n\n${block(':root[data-theme="dark"]', tokens, 'dark')}\n`;
+}
+
+/** Tailwind v4: clases bg-deva-*, text-deva-*, font-deva, rounded-deva, shadow-deva-*. */
+export function renderTailwindCss(tokens) {
+  const lines = ['@import "./tokens.css";', '', '@theme inline {'];
+  for (const name of Object.keys(tokens.color)) lines.push(`  --color-deva-${name}: var(--deva-${name});`);
+  lines.push('  --font-deva: var(--deva-font-body);');
+  lines.push('  --radius-deva: var(--deva-radius);');
+  for (const name of Object.keys(tokens.shadow)) lines.push(`  --shadow-deva-${name}: var(--deva-shadow-${name});`);
+  lines.push('}');
+  return `${header(tokens)}\n${lines.join('\n')}\n`;
+}
