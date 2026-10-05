@@ -65,3 +65,68 @@ export function renderTailwindCss(tokens) {
   lines.push('}');
   return `${header(tokens)}\n${lines.join('\n')}\n`;
 }
+
+const camel = (name) => name.replace(/-([a-z0-9])/g, (_, c) => c.toUpperCase());
+
+function resolvedColors(tokens) {
+  const out = { light: {}, dark: {} };
+  for (const [name, value] of Object.entries(tokens.color)) {
+    for (const mode of MODES) out[mode][camel(name)] = value[mode];
+  }
+  return out;
+}
+
+const MUI_BODY = `function createDevaPalette(mode) {
+  const t = devaTokens[mode];
+  return {
+    mode,
+    primary: { main: t.action, contrastText: t.onAction },
+    // Texto oscuro: el blanco sobre brand (#3498db) no llega a 4,5:1.
+    secondary: { main: t.brand, contrastText: '#0a1428' },
+    error: { main: t.danger },
+    warning: { main: t.warn },
+    success: { main: t.ok },
+    info: { main: t.action },
+    background: { default: t.bg, paper: t.surface },
+    text: { primary: t.ink, secondary: t.inkSoft },
+    divider: t.line,
+  };
+}`;
+
+/** Módulo para MUI, en 'esm' o 'cjs'. */
+export function renderMuiModule(tokens, format) {
+  const consts = [
+    `const devaTokens = ${JSON.stringify(resolvedColors(tokens), null, 2)};`,
+    `const devaFontFamily = ${JSON.stringify(tokens.font.body)};`,
+    `const devaRadius = ${parseInt(tokens.radius, 10)};`,
+  ].join('\n');
+  const names = 'createDevaPalette, devaTokens, devaFontFamily, devaRadius';
+  const exportLine = format === 'cjs' ? `module.exports = { ${names} };` : `export { ${names} };`;
+  return `${header(tokens).replace('/*', '//').replace(' */', '')}${consts}\n\n${MUI_BODY}\n\n${exportLine}\n`;
+}
+
+export function renderMuiDts(tokens) {
+  const fields = Object.keys(tokens.color).map((n) => `  ${camel(n)}: string;`).join('\n');
+  return `${header(tokens)}
+export type DevaMode = 'light' | 'dark';
+export interface DevaColorTokens {
+${fields}
+}
+export declare const devaTokens: Record<DevaMode, DevaColorTokens>;
+export declare const devaFontFamily: string;
+export declare const devaRadius: number;
+export interface DevaPaletteOptions {
+  mode: DevaMode;
+  primary: { main: string; contrastText: string };
+  secondary: { main: string; contrastText: string };
+  error: { main: string };
+  warning: { main: string };
+  success: { main: string };
+  info: { main: string };
+  background: { default: string; paper: string };
+  text: { primary: string; secondary: string };
+  divider: string;
+}
+export declare function createDevaPalette(mode: DevaMode): DevaPaletteOptions;
+`;
+}
