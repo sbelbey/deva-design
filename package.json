@@ -1,0 +1,29 @@
+{
+  "name": "deva-design",
+  "version": "1.0.0",
+  "description": "Design tokens de la familia DEVA (DEVA, DEVA Pedidos, DEVA Nexus, deva.ar)",
+  "license": "UNLICENSED",
+  "type": "module",
+  "main": "./dist/mui.cjs",
+  "module": "./dist/mui.mjs",
+  "types": "./dist/mui.d.ts",
+  "exports": {
+    ".": {
+      "types": "./dist/mui.d.ts",
+      "import": "./dist/mui.mjs",
+      "require": "./dist/mui.cjs"
+    },
+    "./tokens.css": "./dist/tokens.css",
+    "./tailwind.css": "./dist/tailwind.css",
+    "./tokens.json": "./dist/tokens.json",
+    "./dist/*": "./dist/*",
+    "./assets/*": "./assets/*"
+  },
+  "files": ["dist", "assets"],
+  "scripts": {
+    "build": "node scripts/build.mjs",
+    "check": "node scripts/build.mjs --check",
+    "test": "node --test"
+  },
+  "engines": { "node": ">=20" }
+}

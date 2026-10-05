@@ -65,7 +65,7 @@ Este plan cubre sólo el paquete. Las migraciones del portal (1.3.8), DEVA (1.3.
   "scripts": {
     "build": "node scripts/build.mjs",
     "check": "node scripts/build.mjs --check",
-    "test": "node --test test/"
+    "test": "node --test"
   },
   "engines": { "node": ">=20" }
 }
