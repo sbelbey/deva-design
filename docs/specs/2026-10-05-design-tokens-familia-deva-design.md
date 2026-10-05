@@ -42,7 +42,9 @@ DEVA, el portal de pedidos, Nexus y la landing deva.ar tienen que reconocerse co
 | `bg` | Fondo de la pantalla | `#F0F7FF` | `#0a1428` |
 | `surface` | Tarjetas, diálogos, tablas | `#ffffff` | `#00193b` |
 | `surface-2` | Campos, filas alternas | `#E6F0FB` | `#0b2147` |
-| `chip-bg` | Etiquetas neutras de marca | `#e3f2fd` | `#10305a` |
+| `chip-bg` | Fondo de etiquetas de marca | `#e3f2fd` | `#10305a` |
+| `chip-ink` | Texto de esas etiquetas | `#1A68AD` | `#5DADE2` |
+| `on-bar` | Logo y texto sobre la barra | `#ffffff` | `#ffffff` |
 | `ink` | Texto principal | `#1a2332` | `#e8f0fe` |
 | `ink-soft` | Texto secundario | `#4a5a70` | `#a9bbd6` |
 | `line` | Bordes y separadores | `#d6e7f8` | `#17345f` |
@@ -55,15 +57,22 @@ Además:
 * `radius`: `8px`;
 * `shadow-sm`, `shadow-md`, `shadow-lg`: los valores actuales del portal (`deva-ward-portal/src/index.css`), con su versión oscura.
 
-Contrastes verificados (WCAG):
+Contrastes verificados (WCAG). Todos los pares de texto normal llegan a 4,5:1 o más en los dos modos (mínimo: 4,6 en claro y 5,4 en oscuro):
 
 | Par | Claro | Oscuro |
 |---|---|---|
-| texto sobre `action` | 4,9:1 | 7,5:1 |
+| `on-action` sobre `action` | 4,9:1 | 7,5:1 |
 | `action` sobre `bg` | 4,6:1 | 7,5:1 |
+| `chip-ink` sobre `chip-bg` | 5,1:1 | 5,4:1 |
 | `ink` sobre `bg` | 14,6:1 | 16,0:1 |
 
-En claro también: `ink-soft` sobre blanco 7,0:1, `ok` 5,1:1, `warn` 6,5:1 y `danger` 5,6:1 sobre blanco.
+Los demás pares que controla el test son:
+* `action` sobre `surface`;
+* `ink` sobre `surface` y `surface-2`;
+* `ink-soft` sobre `bg` y `surface`;
+* `ok`, `warn` y `danger` sobre su fondo y sobre `surface`.
+
+**La barra es la excepción.** `on-bar` sobre `bar` da 3,15:1 en claro, porque la barra es el azul exacto del logo, y 6,7:1 en oscuro. Alcanza para el logo y para texto grande (mínimo 3:1), pero no para texto chico. Regla: sobre la barra van el logo y el nombre del producto en 19 px peso 600 o más. El texto chico (usuario, "Cerrar sesión") va dentro de un botón blanco con texto `action`, como hoy en DEVA. El test controla este par con el mínimo de texto grande.
 
 ## Paquete `deva-design`
 
@@ -71,7 +80,7 @@ En claro también: `ink-soft` sobre blanco 7,0:1, `ok` 5,1:1, `warn` 6,5:1 y `da
 tokens/tokens.json      única fuente
 scripts/build.mjs       genera dist/ y corre el test de contraste
 dist/tokens.css         variables --deva-*: :root (claro) y [data-theme="dark"] (oscuro)
-dist/tailwind.css       @theme inline que mapea --deva-* a clases de Tailwind v4 (bg-surface, text-ink, bg-action…)
+dist/tailwind.css       @theme inline que mapea --deva-* a clases de Tailwind v4 con prefijo deva (bg-deva-surface, text-deva-ink, bg-deva-action…), para no pisar los nombres que cada app ya usa
 dist/mui.js, mui.d.ts   createDevaPalette(mode) para createTheme de MUI
 dist/tokens.json        copia de los valores crudos
 assets/deva-logo.png        wordmark oficial azul (1306x610, fondo transparente)
@@ -82,7 +91,7 @@ README.md, CHANGELOG.md
 - Las variables CSS llevan prefijo `--deva-` para no chocar con las que cada app ya tiene (por ejemplo, `--brand` del portal es hoy el azul de los botones).
 - `dist/` se commitea, para que instalar desde GitHub no tenga que compilar nada.
 - El lockup "logo | Producto" no es una imagen por producto: es el logo blanco más el nombre en Inter. El README trae el HTML y CSS de ejemplo.
-- **Test de contraste:** `npm run build` falla si algún par de texto y fondo de la tabla de contrastes baja de 4,5:1.
+- **Test de contraste:** `npm test` falla si algún par de texto normal baja de 4,5:1, o si `on-bar` sobre `bar` baja de 3:1.
 - **Versionado:** un tag semver por cambio (`v1.0.0`, `v1.1.0`…). Las apps fijan el tag con `npm install github:sbelbey/deva-design#vX.Y.Z`. Un cambio en el paquete no llega solo a ninguna app: se actualiza a propósito, app por app.
 
 ## Migración por app (en este orden)
