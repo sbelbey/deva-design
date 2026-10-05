@@ -1,0 +1,30 @@
+/* deva-design v1.0.0 — generado desde tokens/tokens.json. No editar a mano. */
+
+@import "./tokens.css";
+
+@theme inline {
+  --color-deva-brand: var(--deva-brand);
+  --color-deva-bar: var(--deva-bar);
+  --color-deva-on-bar: var(--deva-on-bar);
+  --color-deva-action: var(--deva-action);
+  --color-deva-on-action: var(--deva-on-action);
+  --color-deva-bg: var(--deva-bg);
+  --color-deva-surface: var(--deva-surface);
+  --color-deva-surface-2: var(--deva-surface-2);
+  --color-deva-chip-bg: var(--deva-chip-bg);
+  --color-deva-chip-ink: var(--deva-chip-ink);
+  --color-deva-ink: var(--deva-ink);
+  --color-deva-ink-soft: var(--deva-ink-soft);
+  --color-deva-line: var(--deva-line);
+  --color-deva-ok: var(--deva-ok);
+  --color-deva-ok-bg: var(--deva-ok-bg);
+  --color-deva-warn: var(--deva-warn);
+  --color-deva-warn-bg: var(--deva-warn-bg);
+  --color-deva-danger: var(--deva-danger);
+  --color-deva-danger-bg: var(--deva-danger-bg);
+  --font-deva: var(--deva-font-body);
+  --radius-deva: var(--deva-radius);
+  --shadow-deva-sm: var(--deva-shadow-sm);
+  --shadow-deva-md: var(--deva-shadow-md);
+  --shadow-deva-lg: var(--deva-shadow-lg);
+}
