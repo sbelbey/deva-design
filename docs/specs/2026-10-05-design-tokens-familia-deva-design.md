@@ -74,6 +74,12 @@ Los demás pares que controla el test son:
 
 **La barra es la excepción.** `on-bar` sobre `bar` da 3,15:1 en claro, porque la barra es el azul exacto del logo, y 6,7:1 en oscuro. Alcanza para el logo y para texto grande (mínimo 3:1), pero no para texto chico. Regla: sobre la barra van el logo y el nombre del producto en 19 px peso 600 o más. El texto chico (usuario, "Cerrar sesión") va dentro de un botón blanco con texto `action`, como hoy en DEVA. El test controla este par con el mínimo de texto grande.
 
+**Barra en dos niveles (decisión de Saúl del 5/10, al migrar el portal).** Las apps con menú (portal, DEVA, Nexus) usan dos barras:
+* **arriba**, la barra `bar`, sólo con el logo, el nombre del producto y "Cerrar sesión" en un botón blanco con texto `action`;
+* **abajo**, una barra `surface` con borde inferior `line`, que lleva el menú (texto `ink-soft`, la sección activa en `chip-bg` con texto `chip-ink`), el origen o sector, los avisos y el modo oscuro.
+
+Así todo el texto chico queda legible. Hoy, sobre `#2196F3`, el menú daba 3,1:1.
+
 ## Paquete `deva-design`
 
 ```
