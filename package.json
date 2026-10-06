@@ -1,6 +1,6 @@
 {
   "name": "deva-design",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "Design tokens de la familia DEVA (DEVA, DEVA Pedidos, DEVA Nexus, deva.ar)",
   "license": "UNLICENSED",
   "type": "module",

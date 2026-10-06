@@ -1,10 +1,11 @@
-/* deva-design v1.0.0 — generado desde tokens/tokens.json. No editar a mano. */
+/* deva-design v1.1.0 — generado desde tokens/tokens.json. No editar a mano. */
 
 :root {
   color-scheme: light;
   --deva-brand: #3498db;
   --deva-bar: #3498db;
   --deva-on-bar: #ffffff;
+  --deva-bar-button-ink: #1E73BE;
   --deva-action: #1E73BE;
   --deva-on-action: #ffffff;
   --deva-bg: #F0F7FF;
@@ -33,6 +34,7 @@
   --deva-brand: #3498db;
   --deva-bar: #1f5f96;
   --deva-on-bar: #ffffff;
+  --deva-bar-button-ink: #1E73BE;
   --deva-action: #5DADE2;
   --deva-on-action: #0a1428;
   --deva-bg: #0a1428;

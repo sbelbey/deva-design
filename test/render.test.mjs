@@ -21,7 +21,8 @@ test('tokens.css: claro en :root y oscuro en [data-theme="dark"], con prefijo --
     assert.match(light, new RegExp(`--deva-${name}: `));
     assert.match(dark, new RegExp(`--deva-${name}: `));
   }
-  assert.match(css, /v1\.0\.0/);
+  assert.match(css, /v1\.1\.0/);
+  assert.match(dark, /--deva-bar-button-ink: #1E73BE;/);
 });
 
 test('tailwind.css: importa tokens.css y mapea con prefijo deva', () => {

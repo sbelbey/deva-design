@@ -1,10 +1,11 @@
-/* deva-design v1.0.0 — generado desde tokens/tokens.json. No editar a mano. */
+/* deva-design v1.1.0 — generado desde tokens/tokens.json. No editar a mano. */
 
 export type DevaMode = 'light' | 'dark';
 export interface DevaColorTokens {
   brand: string;
   bar: string;
   onBar: string;
+  barButtonInk: string;
   action: string;
   onAction: string;
   bg: string;

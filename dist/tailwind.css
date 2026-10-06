@@ -1,4 +1,4 @@
-/* deva-design v1.0.0 — generado desde tokens/tokens.json. No editar a mano. */
+/* deva-design v1.1.0 — generado desde tokens/tokens.json. No editar a mano. */
 
 @import "./tokens.css";
 
@@ -6,6 +6,7 @@
   --color-deva-brand: var(--deva-brand);
   --color-deva-bar: var(--deva-bar);
   --color-deva-on-bar: var(--deva-on-bar);
+  --color-deva-bar-button-ink: var(--deva-bar-button-ink);
   --color-deva-action: var(--deva-action);
   --color-deva-on-action: var(--deva-on-action);
   --color-deva-bg: var(--deva-bg);

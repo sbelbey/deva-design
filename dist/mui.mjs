@@ -1,9 +1,10 @@
-// deva-design v1.0.0 — generado desde tokens/tokens.json. No editar a mano.
+// deva-design v1.1.0 — generado desde tokens/tokens.json. No editar a mano.
 const devaTokens = {
   "light": {
     "brand": "#3498db",
     "bar": "#3498db",
     "onBar": "#ffffff",
+    "barButtonInk": "#1E73BE",
     "action": "#1E73BE",
     "onAction": "#ffffff",
     "bg": "#F0F7FF",
@@ -25,6 +26,7 @@ const devaTokens = {
     "brand": "#3498db",
     "bar": "#1f5f96",
     "onBar": "#ffffff",
+    "barButtonInk": "#1E73BE",
     "action": "#5DADE2",
     "onAction": "#0a1428",
     "bg": "#0a1428",

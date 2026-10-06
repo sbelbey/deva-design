@@ -7,7 +7,7 @@ Diseño completo: [docs/specs/2026-10-05-design-tokens-familia-deva-design.md](d
 ## Instalar
 
 ```bash
-npm install github:sbelbey/deva-design#v1.0.0
+npm install github:sbelbey/deva-design#v1.1.0
 ```
 
 El repo es público, así que no hace falta ninguna credencial (ni en el CI, ni en Amplify, ni en Docker). Fijá siempre un tag: un cambio acá no llega solo a ninguna app.
@@ -68,7 +68,7 @@ DEVA (la app principal) lleva sólo el logo, sin separador ni nombre.
 
 ## Reglas
 
-- **Sobre la barra** van sólo el logo y el nombre del producto en 19 px y peso 600 o más: el contraste blanco sobre `bar` en modo claro (3,15:1) alcanza para texto grande, no para texto chico. El texto chico (usuario, "Cerrar sesión") va dentro de un botón blanco con texto `action`.
+- **Sobre la barra** van sólo el logo y el nombre del producto en 19 px y peso 600 o más: el contraste blanco sobre `bar` en modo claro (3,15:1) alcanza para texto grande, no para texto chico. El texto chico (usuario, "Cerrar sesión") va dentro de un botón blanco con texto `bar-button-ink` (no `action`: en oscuro `action` es celeste y sobre blanco no se lee).
 - **Botones, enlaces, foco y selección**: `action` / `on-action`. `brand` es sólo marca (logo, barra, ilustraciones).
 - **Estados**: `ok`, `warn`, `danger`, con su fondo `*-bg`.
 
